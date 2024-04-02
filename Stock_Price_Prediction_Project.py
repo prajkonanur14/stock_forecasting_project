@@ -189,6 +189,19 @@ def eval_metrics(data):
     mse = mean_squared_error(data['Close'], data['Predicted Close'])
     return (resid, mae, mse)
 
+#Plotting Test Data vs Predicted Data
+def final_plot(data, stock_name, color1, color2='black'):
+    fig, ax = plt.subplots(1, 2, figsize=(12,6), sharey=True)
+    ax[0].plot(data['Close'], color=color1)
+    ax[1].plot(data['Predicted Close'], color=color2)
+    #Labels
+    ax[0].set_title(f'Closing Stock price for {stock_name}')
+    ax[1].set_title(f'Predicted Closing Stock Price for {stock_name}')
+    ax[0].set_ylabel('Closing Stock Price')
+    fig.tight_layout()
+    ax[0].grid()
+    ax[1].grid()
+
 ###Stationarize Data
 train_list = [df_mck_train, df_vz_train, df_xom_train, df_hlt_train, df_meta_train]
 test_list = [df_mck_test, df_vz_test, df_xom_test, df_hlt_test, df_meta_test]
